@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMaster LMS - Kurikulum SMK Videografi & Generator Naskah Profesional</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Poppins & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            900: '#7f1d1d',
+                            dark: '#0a0a0a',
+                            card: '#141414'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #262626; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #404040; }
+        .glass { background: rgba(20, 20, 20, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(239, 68, 68, 0.15); }
+    </style>
+</head>
+<body class="bg-black text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-red-600 selection:text-white">
+
+    <header class="sticky top-0 z-50 glass border-b border-red-950/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-rose-500 flex items-center justify-center shadow-lg shadow-red-600/30">
+                    <i class="fa-solid fa-video text-white text-lg font-bold"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-red-500 bg-clip-text text-transparent">CineMaster</span>
+                    <span class="block text-[10px] tracking-widest text-red-500 font-semibold uppercase">LMS SMK Videografi</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-6">
+                <button onclick="switchTab('home')" id="nav-home" class="text-sm font-semibold text-red-500 transition hover:text-red-400">Beranda</button>
+                <button onclick="switchTab('courses')" id="nav-courses" class="text-sm font-medium text-slate-300 transition hover:text-white">Kurikulum SMK</button>
+                <button onclick="switchTab('generator')" id="nav-generator" class="text-sm font-medium text-slate-300 transition hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-wand-magic-sparkles text-red-500"></i> Generator Naskah & Storyboard</button>
+                <button onclick="switchTab('studio')" id="nav-studio" class="text-sm font-medium text-slate-300 transition hover:text-white flex items-center gap-1.5"><i class="fa-solid fa-clapperboard text-red-500"></i> Simulator Kamera</button>
+                <button onclick="switchTab('community')" id="nav-community" class="text-sm font-medium text-slate-300 transition hover:text-white">Karya Siswa</button>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button onclick="openModal('loginModal')" class="hidden sm:inline-flex px-4 py-2 text-sm font-semibold text-slate-300 hover:text-white transition">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- VIEW: HOME -->
+        <section id="view-home" class="view-section">
+            <div class="relative overflow-hidden py-20 lg:py-28">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-950/30 via-black to-black pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-600/10 border border-red-500/20 text-red-500 text-xs font-semibold">
+                                <i class="fa-solid fa-graduation-cap"></i> Standar Kurikulum SMK Broadcasting & Perfilman
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                                Platform Belajar <span class="bg-gradient-to-r from-red-500 to-rose-400 bg-clip-text text-transparent">Videografi & Studio Kreatif</span>
+                            </h1>
+                            <p class="text-lg text-slate-400 max-w-2xl mx-auto lg:mx-0">
+                                Pelajari kompetensi inti keahlian film: Penyusunan naskah narasi standar industri dengan format Slugline, Action Line, Dialog, Parenthetical, Talking Voice, dan Storyboard profesional.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                                <button onclick="switchTab('generator')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-base shadow-xl shadow-red-600/25 transition flex items-center justify-center gap-2">
+                                    <span>Buka Generator Naskah Standar Industri</span>
+                                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                </button>
+                                <button onclick="switchTab('courses')" class="w-full sm:w-auto px-8 py-4 rounded-xl glass hover:bg-neutral-900 text-white font-semibold text-base transition flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-book text-red-500"></i> Jelajahi Kurikulum SMK
+                                </button>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative rounded-2xl overflow-hidden glass p-3 shadow-2xl shadow-red-600/10 border border-neutral-800">
+                                <img src="https://placehold.co/600x400/141414/ef4444?text=Screenwriting+Format+SMK" alt="Videography Preview" class="rounded-xl w-full h-auto object-cover aspect-video">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-xl font-bold shadow-lg cursor-pointer hover:scale-110 transition" onclick="openVideoPlayer('Standar Penulisan Naskah SMK', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+                                            <i class="fa-solid fa-play ml-1"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-bold text-sm">Modul Scriptwriting Film</h4>
+                                            <p class="text-xs text-red-500">Panduan Praktis Penulisan (12 Menit)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: STRUCTURED SCRIPT & STORYBOARD GENERATOR -->
+        <section id="view-generator" class="view-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto space-y-3">
+                    <span class="text-xs text-red-500 font-bold uppercase tracking-wider">Dashboard Tugas & Studio Kreatif Siswa</span>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Generator Naskah Film & Storyboard Profesional</h1>
+                    <p class="text-slate-400 text-sm sm:text-base">Masukkan elemen-elemen pembuatan naskah standar industri (Slugline, Action Line, Karakter, Dialog, Parenthetical, Transisi, dan Talking Voice/VO) di bawah ini untuk langsung menyusun format tugas siap kumpul.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Input Section -->
+                    <div class="lg:col-span-6 glass rounded-2xl p-6 sm:p-8 border border-neutral-800 space-y-5">
+                        <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+                            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-pen-nib text-red-500"></i> Form Elemen Naskah & Storyboard Siswa
+                            </h3>
+                            <button onclick="fillSampleScript()" class="text-[11px] text-red-400 hover:underline font-semibold">Isi Contoh Soal SMK</button>
+                        </div>
+
+                        <div class="space-y-4 max-h-[580px] overflow-y-auto pr-2">
+                            <!-- 1. Slugline -->
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                                    <span>1. Slugline (Lokasi & Waktu)</span>
+                                    <span class="text-[10px] text-slate-500">Contoh: INT. KELAS MULTIMEDIA - SIANG</span>
+                                </label>
+                                <input type="text" id="scriptSlugline" placeholder="INT. STUDIO FILM - PAGI / EXT. HALAMAN SEKOLAH - SORE" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-600">
+                            </div>
+
+                            <!-- 2. Action Line -->
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-semibold text-slate-300 flex items-center justify-between">
+                                    <span>2. Action Line (Deskripsi Visual/Setting)</span>
+                                    <span class="text-[10px] text-slate-500">Aksi & Pergerakan Kamera</span>
+                                </label>
+                                <textarea id="scriptAction" rows="2" placeholder="Siswa SMK menyiapkan tripod kamera dan menyalakan lampu softbox dengan teliti..." class="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
+                            </div>
+
+                            <!-- 3. Character Name -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-semibold text-slate-300">3. Nama Karakter</label>
+                                    <input type="text" id="scriptCharacter" placeholder="BIMO (17)" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-600">
+                                </div>
+                                <div class="space-y-1.5">
+                                    <label class="text-xs font-semibold text-slate-300">Parenthetical (Keterangan Ekspresi)</label>
+                                    <input type="text" id="scriptParenthetical" placeholder="(tersenyum, bersemangat)" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-600">
+                                </div>
+                            </div>
+
+                            <!-- 4. Dialog -->
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-semibold text-slate-300">4. Dialog Tokoh</label>
+                                <textarea id="scriptDialog" rows="2" placeholder="Pastikan sudut pengambilan gambar medium shot ini fokus pada ekspresi wajah narasumber ya!" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
+                            </div>
+
+                            <!-- 5. Talking Voice / Voice Over (VO) -->
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-semibold text-slate-300">5. Talking Voice / Voice Over (VO)</label>
+                                <textarea id="scriptVoice" rows="2" placeholder="Narator: 'Pendidikan vokasi SMK mencetak generasi kreatif yang siap terjun langsung di dunia industri penyiaran.'" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-red-600 resize-none"></textarea>
+                            </div>
+
+                            <!-- 6. Transition -->
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-semibold text-slate-300">6. Kalimat Transisi (Transition)</label>
+                                <input type="text" id="scriptTransition" placeholder="CUT TO:" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-600">
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button onclick="generateStructuredScript()" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-sm shadow-lg shadow-red-600/25 transition flex items-center justify-center gap-2">
+                                <span>Generate Format Naskah & Storyboard Instan</span>
+                                <i class="fa-solid fa-bolt"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Output Section -->
+                    <div class="lg:col-span-6 glass rounded-2xl p-6 sm:p-8 border border-neutral-800 space-y-6 flex flex-col justify-between">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-neutral-800 pb-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-600 animate-pulse"></div>
+                                    <h3 class="text-base font-bold text-white">Hasil Format Standar Industri</h3>
+                                </div>
+                                <span id="outputStatusTag" class="text-xs px-2.5 py-1 rounded-md bg-neutral-900 text-slate-400 font-mono">Menunggu Input Data...</span>
+                            </div>
+
+                            <!-- Output Container -->
+                            <div id="instantOutputBox" class="bg-black border border-neutral-900 rounded-xl p-5 min-h-[320px] max-h-[420px] overflow-y-auto space-y-4 font-mono text-xs text-slate-300 leading-relaxed">
+                                <div class="text-center text-slate-500 py-24 space-y-2">
+                                    <i class="fa-solid fa-clapperboard text-3xl text-neutral-700"></i>
+                                    <p>Silakan isi formulir elemen naskah di sebelah kiri, lalu klik <b>Generate</b> untuk melihat hasil format resmi siap kumpul.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons (Copy & Download) -->
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-neutral-800">
+                            <div class="flex items-center gap-2">
+                                <button onclick="copyToClipboard()" class="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-semibold text-xs border border-neutral-800 transition flex items-center gap-2">
+                                    <i class="fa-regular fa-copy text-red-500"></i> Copy to Clipboard
+                                </button>
+                                <button onclick="downloadAsDocx()" class="px-4 py-2.5 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-semibold text-xs border border-neutral-800 transition flex items-center gap-2">
+                                    <i class="fa-solid fa-file-arrow-down text-red-500"></i> Download as Docx/PDF
+                                </button>
+                            </div>
+                            <span class="text-[11px] text-red-500 font-semibold"><i class="fa-solid fa-circle-check mr-1"></i> Siap Kumpul Tugas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: COURSES CATALOG & SMK SYLLABUS -->
+        <section id="view-courses" class="view-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <span class="text-xs text-red-500 font-bold uppercase tracking-wider">Kompetensi Keahlian SMK</span>
+                        <h1 class="text-3xl font-extrabold text-white mt-1">Kurikulum Standar Industri & SMK</h1>
+                        <p class="text-slate-400 mt-1">Materi lengkap dari tahap Pra-Produksi, Produksi, hingga Pasca-Produksi.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Course 1 -->
+                    <div class="rounded-2xl glass overflow-hidden flex flex-col justify-between border border-neutral-800 hover:border-red-600/50 transition">
+                        <div>
+                            <div class="relative">
+                                <img src="https://placehold.co/600x350/141414/ef4444?text=Pra-Produksi+Naskah" alt="Course" class="w-full h-48 object-cover">
+                                <span class="absolute top-3 left-3 bg-black/80 text-red-500 text-xs font-semibold px-3 py-1 rounded-full border border-red-500/20">Kelas X / Semester 1</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-xs text-slate-400">
+                                    <span><i class="fa-solid fa-book-open text-red-500 mr-1"></i> 8 Modul</span>
+                                    <span><i class="fa-solid fa-clock text-red-500 mr-1"></i> 4 Jam</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white hover:text-red-500 transition cursor-pointer" onclick="openCourseDetail('Pra-Produksi: Penulisan Naskah & Storyboard')">Pra-Produksi: Penulisan Naskah & Storyboard</h3>
+                                <p class="text-slate-400 text-sm line-clamp-2">Teknik merumuskan ide cerita, format naskah audiovisual standar industri, dan tata cara membuat storyboard visual.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-red-600/10 text-red-500 font-bold">Wajib SMK</span>
+                            <button onclick="openCourseDetail('Pra-Produksi: Penulisan Naskah & Storyboard')" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md transition">Buka Modul</button>
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="rounded-2xl glass overflow-hidden flex flex-col justify-between border border-neutral-800 hover:border-red-600/50 transition">
+                        <div>
+                            <div class="relative">
+                                <img src="https://placehold.co/600x350/141414/ef4444?text=Operasi+Kamera+SMK" alt="Course" class="w-full h-48 object-cover">
+                                <span class="absolute top-3 left-3 bg-black/80 text-rose-400 text-xs font-semibold px-3 py-1 rounded-full border border-rose-500/20">Kelas X / Semester 2</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-xs text-slate-400">
+                                    <span><i class="fa-solid fa-book-open text-red-500 mr-1"></i> 10 Modul</span>
+                                    <span><i class="fa-solid fa-clock text-red-500 mr-1"></i> 5 Jam</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white hover:text-red-500 transition cursor-pointer" onclick="openCourseDetail('Teknik Pengoperasian Kamera & Tata Cahaya')">Teknik Pengoperasian Kamera & Tata Cahaya Dasar</h3>
+                                <p class="text-slate-400 text-sm line-clamp-2">Mengenal jenis kamera video, segitiga eksposur, sudut pengambilan gambar (camera angles), dan 3-point lighting.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-red-600/10 text-red-500 font-bold">Wajib SMK</span>
+                            <button onclick="openCourseDetail('Teknik Pengoperasian Kamera & Tata Cahaya')" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md transition">Buka Modul</button>
+                        </div>
+                    </div>
+
+                    <!-- Course 3 -->
+                    <div class="rounded-2xl glass overflow-hidden flex flex-col justify-between border border-neutral-800 hover:border-red-600/50 transition">
+                        <div>
+                            <div class="relative">
+                                <img src="https://placehold.co/600x350/141414/ef4444?text=Editing+Video+SMK" alt="Course" class="w-full h-48 object-cover">
+                                <span class="absolute top-3 left-3 bg-black/80 text-red-500 text-xs font-semibold px-3 py-1 rounded-full border border-red-500/20">Kelas XI / Semester 1</span>
+                            </div>
+                            <div class="p-6 space-y-3">
+                                <div class="flex items-center justify-between text-xs text-slate-400">
+                                    <span><i class="fa-solid fa-book-open text-red-500 mr-1"></i> 12 Modul</span>
+                                    <span><i class="fa-solid fa-clock text-red-500 mr-1"></i> 6 Jam</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white hover:text-red-500 transition cursor-pointer" onclick="openCourseDetail('Editing Video & Motion Graphics')">Editing Video & Motion Graphics</h3>
+                                <p class="text-slate-400 text-sm line-clamp-2">Praktek pemotongan gambar (cutting), transisi, efek suara, hingga color grading standar siaran.</p>
+                            </div>
+                        </div>
+                        <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
+                            <span class="text-xs px-2.5 py-1 rounded-md bg-red-600/10 text-red-500 font-bold">Wajib SMK</span>
+                            <button onclick="openCourseDetail('Editing Video & Motion Graphics')" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shadow-md transition">Buka Modul</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: CAMERA STUDIO SIMULATOR -->
+        <section id="view-studio" class="view-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="text-xs text-red-500 font-bold uppercase tracking-wider">Praktikum Virtual SMK</span>
+                    <h1 class="text-3xl font-extrabold text-white">Studio Color Grading & Unggah Media Siswa</h1>
+                    <p class="text-slate-400 text-sm">Unggah foto atau video karya kamu, terapkan penyesuaian warna sinematik (Color Grading), dan simpan sebagai gambar (.png).</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <div class="lg:col-span-7 glass rounded-2xl p-6 border border-neutral-800 space-y-4">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="text-xs font-semibold tracking-wider text-red-500 uppercase"><i class="fa-solid fa-circle text-[8px] animate-pulse mr-1"></i> Live Color Preview SMK</span>
+                            <div class="flex items-center gap-2">
+                                <label for="mediaUpload" class="px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs cursor-pointer transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-upload"></i> Unggah Media
+                                </label>
+                                <input type="file" id="mediaUpload" accept="image/*,video/*" class="hidden" onchange="handleMediaUpload(event)">
+                                <button onclick="saveGradedImage()" class="px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-slate-200 font-semibold text-xs border border-neutral-800 transition flex items-center gap-1.5">
+                                    <i class="fa-solid fa-image text-red-500"></i> Simpan Gambar (.png)
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Viewfinder Container for Canvas / Image Export -->
+                        <div id="viewfinderFrame" class="relative w-full aspect-video rounded-xl bg-black overflow-hidden flex items-center justify-center border border-neutral-800 transition-all duration-300">
+                            <!-- Default or Uploaded Image/Video background container with CSS Filter Grading -->
+                            <div class="absolute inset-0 bg-cover bg-center transition-all duration-300" style="background-image: url('https://placehold.co/800x450/0f0505/ef4444?text=Praktikum+Color+Grading+SMK');" id="simMediaContainer">
+                                <video id="simVideoElement" class="w-full h-full object-cover hidden" muted loop playsinline></video>
+                            </div>
+                            <!-- Color Grading Filter Overlay -->
+                            <div id="colorGradeOverlay" class="absolute inset-0 pointer-events-none transition-all duration-300" style="mix-blend-mode: overlay; background-color: rgba(220, 38, 38, 0.1);"></div>
+                            <div id="colorTintOverlay" class="absolute inset-0 pointer-events-none transition-all duration-300" style="mix-blend-mode: color; opacity: 0;"></div>
+
+                            <div class="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs font-mono bg-black/80 p-2.5 rounded-lg backdrop-blur-md border border-neutral-800">
+                                <div>
+                                    <span class="text-slate-400">LUT:</span> <span id="dispLUT" class="text-red-500 font-bold">Teal & Orange</span>
+                                </div>
+                                <div>
+                                    <span class="text-slate-400">STATUS:</span> <span id="dispGradeStatus" class="text-red-500 font-bold">Siap Export Gambar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 glass rounded-2xl p-6 border border-neutral-800 space-y-6">
+                        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                            <i class="fa-solid fa-palette text-red-500"></i> Panel Color Grading Profesional
+                        </h3>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-300 font-medium">Preset Cinematic LUT</span>
+                                <span id="valLUT" class="font-bold text-red-500">Teal & Orange</span>
+                            </div>
+                            <select id="selectLUT" onchange="updateColorGrading()" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-red-600">
+                                <option value="tealOrange">Teal & Orange (Blockbuster)</option>
+                                <option value="cyberpunk">Cyberpunk Neon (Sci-Fi)</option>
+                                <option value="noir">Noir Monokrom (Klasik)</option>
+                                <option value="warmCinematic">Warm Golden Hour (Drama)</option>
+                                <option value="bleachBypass">Bleach Bypass (Gritty)</option>
+                            </select>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-300 font-medium">Kontras (Contrast)</span>
+                                <span id="valContrast" class="font-bold text-red-500">110%</span>
+                            </div>
+                            <input type="range" id="rangeContrast" min="50" max="150" value="110" step="5" oninput="updateColorGrading()" class="w-full accent-red-600 bg-neutral-800 rounded-lg h-2 cursor-pointer">
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-300 font-medium">Saturasi Warna (Saturation)</span>
+                                <span id="valSaturation" class="font-bold text-red-500">120%</span>
+                            </div>
+                            <input type="range" id="rangeSaturation" min="0" max="200" value="120" step="5" oninput="updateColorGrading()" class="w-full accent-red-600 bg-neutral-800 rounded-lg h-2 cursor-pointer">
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-300 font-medium">Temperatur Suhu (Temperature)</span>
+                                <span id="valTemp" class="font-bold text-red-500">Normal (0)</span>
+                            </div>
+                            <input type="range" id="rangeTemp" min="-50" max="50" value="0" step="5" oninput="updateColorGrading()" class="w-full accent-red-600 bg-neutral-800 rounded-lg h-2 cursor-pointer">
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-neutral-950 border border-neutral-800 text-xs text-slate-400 space-y-1">
+                            <div class="font-semibold text-white">Panduan Colorist SMK:</div>
+                            <p id="gradingAdvice">Gunakan preset Teal & Orange untuk menonjolkan kontras warna kulit wajah dengan latar belakang sinematik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW: COMMUNITY / STUDENT SHOWCASE -->
+        <section id="view-community" class="view-section hidden py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <span class="text-xs text-red-500 font-bold uppercase tracking-wider">Galeri Karya Siswa</span>
+                    <h1 class="text-3xl font-extrabold text-white">Proyek Portofolio SMK</h1>
+                    <p class="text-slate-400 text-sm">Hasil karya film pendek, iklan layanan masyarakat, dan storyboard siswa Broadcasting.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="rounded-2xl glass overflow-hidden border border-neutral-800 hover:border-red-600/40 transition">
+                        <div class="relative group cursor-pointer" onclick="openVideoPlayer('Film Pendek: Asa di Ujung Kapur', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+                            <img src="https://placehold.co/600x350/141414/ef4444?text=Film+Pendek+SMK" alt="Project" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-lg font-bold shadow-lg">
+                                    <i class="fa-solid fa-play ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://placehold.co/40x40/ef4444/ffffff?text=SMK" alt="Avatar" class="w-9 h-9 rounded-full">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Tim Produksi SMK Negeri 1</h4>
+                                    <span class="text-xs text-red-500">Jurusan Broadcasting</span>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-white">Film Pendek: "Asa di Ujung Kapur"</h3>
+                            <p class="text-xs text-slate-400">Adaptasi naskah dan storyboard terbaik tingkat provinsi.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl glass overflow-hidden border border-neutral-800 hover:border-red-600/40 transition">
+                        <div class="relative group cursor-pointer" onclick="openVideoPlayer('Iklan Layanan Masyarakat: Hemat Energi', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+                            <img src="https://placehold.co/600x350/141414/ef4444?text=ILM+Hemat+Energi" alt="Project" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-lg font-bold shadow-lg">
+                                    <i class="fa-solid fa-play ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://placehold.co/40x40/ef4444/ffffff?text=BC" alt="Avatar" class="w-9 h-9 rounded-full">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Kelompok Multimedia 2</h4>
+                                    <span class="text-xs text-red-500">Tugas Akhir Semester</span>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-white">ILM: "Matikan Listrik Saat Tak Perlu"</h3>
+                            <p class="text-xs text-slate-400">Dilengkapi format naskah dua kolom dan color grading sinematik.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl glass overflow-hidden border border-neutral-800 hover:border-red-600/40 transition">
+                        <div class="relative group cursor-pointer" onclick="openVideoPlayer('Dokumenter Kuliner Nusantara', 'https://www.w3schools.com/html/mov_bbb.mp4')">
+                            <img src="https://placehold.co/600x350/141414/ef4444?text=Dokumenter+Kuliner" alt="Project" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center text-lg font-bold shadow-lg">
+                                    <i class="fa-solid fa-play ml-0.5"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://placehold.co/40x40/ef4444/ffffff?text=DK" alt="Avatar" class="w-9 h-9 rounded-full">
+                                <div>
+                                    <h4 class="text-sm font-bold text-white">Siti Nurhaliza</h4>
+                                    <span class="text-xs text-red-500">Siswa Kelas XII</span>
+                                </div>
+                            </div>
+                            <h3 class="text-base font-bold text-white">Dokumenter: "Jejak Rasa Kuliner Lokal"</h3>
+                            <p class="text-xs text-slate-400">Eksplorasi kamera b-roll dan wawancara narasumber profesional.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Video Player Modal -->
+    <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass max-w-4xl w-full rounded-2xl overflow-hidden border border-neutral-800 relative shadow-2xl">
+            <div class="flex items-center justify-between p-4 border-b border-neutral-800">
+                <h3 id="modalVideoTitle" class="text-base font-bold text-white">Pemutar Video Pembelajaran</h3>
+                <button onclick="closeVideoPlayer()" class="w-8 h-8 rounded-lg bg-neutral-900 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="relative aspect-video bg-black flex items-center justify-center">
+                <video id="modalVideoElement" controls class="w-full h-full object-contain">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course Detail Modal -->
+    <div id="courseModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass max-w-2xl w-full rounded-2xl overflow-hidden border border-neutral-800 p-6 space-y-6 relative shadow-2xl">
+            <div class="flex items-center justify-between border-b border-neutral-800 pb-4">
+                <h3 id="courseModalTitle" class="text-xl font-bold text-white">Judul Modul SMK</h3>
+                <button onclick="closeModal('courseModal')" class="w-8 h-8 rounded-lg bg-neutral-900 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="space-y-4 text-sm text-slate-300">
+                <p>Modul standar pembelajaran SMK Kompetensi Keahlian Broadcasting dan Perfilman. Dilengkapi lembar kerja peserta didik (LKPD) dan latihan praktik mandiri.</p>
+                <div class="space-y-2">
+                    <div class="font-bold text-white">Capaian Pembelajaran (CP):</div>
+                    <ul class="list-disc list-inside space-y-1 text-slate-400">
+                        <li>Memahami prinsip kerja pra-produksi, produksi, dan pasca-produksi.</li>
+                        <li>Mampu menyusun naskah narasi audiovisual menggunakan Slugline, Action Line, Dialog, Parenthetical, dan Talking Voice.</li>
+                        <li>Terampil merancang panel storyboard profesional sesuai standar industri film.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-neutral-800">
+                <span class="text-xs px-3 py-1.5 rounded-lg bg-red-600/10 text-red-500 font-bold">Status: Modul Aktif</span>
+                <button onclick="alertBox('Modul berhasil diakses! Silakan pelajari materi dan kerjakan tugas praktik.'); closeModal('courseModal');" class="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-lg shadow-red-600/20 transition">Mulai Belajar Modul Ini</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-md p-4">
+        <div class="glass max-w-md w-full rounded-2xl overflow-hidden border border-neutral-800 p-6 space-y-6 relative shadow-2xl">
+            <div class="flex items-center justify-between border-b border-neutral-800 pb-4">
+                <h3 id="authTitle" class="text-xl font-bold text-white">Masuk ke LMS SMK</h3>
+                <button onclick="closeModal('authModal')" class="w-8 h-8 rounded-lg bg-neutral-900 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs text-slate-300 font-medium">Email / NISN</label>
+                    <input type="text" required placeholder="nama@sekolah.sch.id" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600">
+                </div>
+                <div class="space-y-1">
+                    <label class="text-xs text-slate-300 font-medium">Kata Sandi</label>
+                    <input type="password" required placeholder="••••••••" class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-red-600">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-lg shadow-red-600/20 transition">Masuk ke Portal Siswa</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom Notification Box -->
+    <div id="customAlert" class="fixed bottom-6 right-6 z-50 hidden max-w-sm glass bg-neutral-950/95 border border-red-600/40 p-4 rounded-xl shadow-2xl flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-red-600/20 text-red-500 flex items-center justify-center flex-shrink-0 text-sm">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <div class="space-y-1">
+            <h4 class="text-sm font-bold text-white">Informasi Sistem SMK</h4>
+            <p id="alertMessage" class="text-xs text-slate-300">Pesan notifikasi sistem.</p>
+        </div>
+        <button onclick="document.getElementById('customAlert').classList.add('hidden')" class="text-slate-400 hover:text-white text-sm"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <footer class="border-t border-neutral-900 bg-black py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white font-bold">
+                    <i class="fa-solid fa-video text-sm"></i>
+                </div>
+                <span class="text-base font-bold text-white">CineMaster LMS SMK</span>
+            </div>
+            <p class="text-xs text-slate-500 text-center md:text-left">© 2026 Kurikulum SMK Broadcasting & Perfilman Indonesia.</p>
+            <div class="flex items-center space-x-6 text-slate-400">
+                <a href="#" class="hover:text-red-500 transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="#" class="hover:text-red-500 transition"><i class="fa-brands fa-youtube text-lg"></i></a>
+                <a href="#" class="hover:text-red-500 transition"><i class="fa-brands fa-linkedin text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentUploadedImageSrc = 'https://placehold.co/800x450/0f0505/ef4444?text=Praktikum+Color+Grading+SMK';
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+
+            ['home', 'courses', 'generator', 'studio', 'community'].forEach(t => {
+                const btn = document.getElementById('nav-' + t);
+                if(btn) {
+                    if(t === tabId) {
+                        btn.className = "text-sm font-semibold text-red-500 transition";
+                    } else {
+                        btn.className = "text-sm font-medium text-slate-300 transition hover:text-white";
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function fillSampleScript() {
+            document.getElementById('scriptSlugline').value = "INT. KELAS MULTIMEDIA - SIANG";
+            document.getElementById('scriptAction').value = "Siswa kelas XII menyalakan kamera DSLR di atas tripod, memperhatikan pencahayaan jendela.";
+            document.getElementById('scriptCharacter').value = "BIMO";
+            document.getElementById('scriptParenthetical').value = "(tersenyum antusias)";
+            document.getElementById('scriptDialog').value = "Teman-teman, pastikan sudut pengambilan gambar angle ini tepat agar visualnya sinematik!";
+            document.getElementById('scriptVoice').value = "Narator (VO): Belajar videografi di SMK menuntut ketelitian dalam setiap detail adegan.";
+            document.getElementById('scriptTransition').value = "CUT TO:";
+            alertBox('Contoh naskah standar SMK berhasil dimuat!');
+        }
+
+        function generateStructuredScript() {
+            const slug = document.getElementById('scriptSlugline').value.trim() || "INT. STUDIO FILM - PAGI";
+            const action = document.getElementById('scriptAction').value.trim() || "Kamera menyorot suasana ruang studio praktik.";
+            const character = document.getElementById('scriptCharacter').value.trim() || "SISWA SMK";
+            const parenthetical = document.getElementById('scriptParenthetical').value.trim() || "(fokus)";
+            const dialog = document.getElementById('scriptDialog').value.trim() || "Mari kita mulai proses syuting adegan pertama.";
+            const voice = document.getElementById('scriptVoice').value.trim() || "Talking Voice / VO: Kreatifitas tanpa batas dimulai dari sini.";
+            const transition = document.getElementById('scriptTransition').value.trim() || "CUT TO:";
+
+            const statusTag = document.getElementById('outputStatusTag');
+            const outputBox = document.getElementById('instantOutputBox');
+
+            statusTag.innerText = "Memproses Format...";
+            statusTag.className = "text-xs px-2.5 py-1 rounded-md bg-red-600/20 text-red-500 font-mono animate-pulse";
+
+            setTimeout(() => {
+                statusTag.innerText = "Selesai (Siap Kumpul)";
+                statusTag.className = "text-xs px-2.5 py-1 rounded-md bg-red-600/10 text-red-500 font-mono";
+
+                outputBox.innerHTML = `
+                    <div class="text-red-500 font-bold border-b border-neutral-900 pb-2 mb-3 flex items-center justify-between">
+                        <span><i class="fa-solid fa-file-lines mr-1"></i> FORMAT NASKAH & STORYBOARD SIAP UPLOAD</span>
+                        <span class="text-[10px] text-slate-400">Standar Industri Film</span>
+                    </div>
+                    <div class="space-y-4 text-slate-200">
+                        <div class="bg-neutral-950 p-3 rounded border border-neutral-900">
+                            <span class="text-red-500 font-bold block text-[11px]">SLUGLINE (Scene Heading):</span>
+                            <p class="uppercase font-bold tracking-wide mt-1 text-white">${slug}</p>
+                        </div>
+                        <div class="bg-neutral-950 p-3 rounded border border-neutral-900">
+                            <span class="text-red-500 font-bold block text-[11px]">ACTION LINE (Deskripsi Visual):</span>
+                            <p class="text-slate-300 mt-1">${action}</p>
+                        </div>
+                        <div class="bg-neutral-950 p-3 rounded border border-neutral-900 space-y-2">
+                            <span class="text-red-500 font-bold block text-[11px]">KARAKTER & DIALOG (Screenplay Format):</span>
+                            <div class="pl-6 space-y-1 border-l-2 border-red-600/40">
+                                <p class="font-bold text-rose-400 uppercase">${character}</p>
+                                <p class="text-slate-400 italic text-[11px]">${parenthetical}</p>
+                                <p class="text-white">"${dialog}"</p>
+                            </div>
+                        </div>
+                        <div class="bg-neutral-950 p-3 rounded border border-neutral-900">
+                            <span class="text-red-500 font-bold block text-[11px]">TALKING VOICE / VOICE OVER (VO):</span>
+                            <p class="text-slate-300 mt-1 italic">${voice}</p>
+                        </div>
+                        <div class="bg-neutral-950 p-3 rounded border border-neutral-900 flex items-center justify-between">
+                            <span class="text-red-500 font-bold text-[11px]">TRANSISI:</span>
+                            <span class="uppercase font-bold tracking-wider text-rose-400">${transition}</span>
+                        </div>
+                    </div>
+                `;
+                alertBox('Naskah dan storyboard berhasil disusun dalam format standar industri!');
+            }, 500);
+        }
+
+        function copyToClipboard() {
+            const slug = document.getElementById('scriptSlugline').value.trim() || "INT. STUDIO FILM - PAGI";
+            const action = document.getElementById('scriptAction').value.trim() || "";
+            const character = document.getElementById('scriptCharacter').value.trim() || "";
+            const parenthetical = document.getElementById('scriptParenthetical').value.trim() || "";
+            const dialog = document.getElementById('scriptDialog').value.trim() || "";
+            const transition = document.getElementById('scriptTransition').value.trim() || "";
+
+            let cleanText = `${slug}\n\n`;
+            if(action) cleanText += `${action}\n\n`;
+            if(character) {
+                cleanText += `${character.toUpperCase()}\n`;
+                if(parenthetical) cleanText += `${parenthetical}\n`;
+                if(dialog) cleanText += `"${dialog}"\n\n`;
+            }
+            if(transition) cleanText += `${transition}\n`;
+
+            if(navigator.clipboard) {
+                navigator.clipboard.writeText(cleanText).then(() => {
+                    alertBox('Naskah bersih berhasil disalin ke Clipboard!');
+                }).catch(() => {
+                    alertBox('Berhasil disalin!');
+                });
+            } else {
+                const textArea = document.createElement("textarea");
+                textArea.value = cleanText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alertBox('Berhasil disalin!');
+            }
+        }
+
+        function downloadAsDocx() {
+            const slug = document.getElementById('scriptSlugline').value.trim() || "INT. STUDIO FILM - PAGI";
+            const action = document.getElementById('scriptAction').value.trim() || "";
+            const character = document.getElementById('scriptCharacter').value.trim() || "";
+            const parenthetical = document.getElementById('scriptParenthetical').value.trim() || "";
+            const dialog = document.getElementById('scriptDialog').value.trim() || "";
+            const transition = document.getElementById('scriptTransition').value.trim() || "";
+
+            let cleanText = `${slug}\n\n`;
+            if(action) cleanText += `${action}\n\n`;
+            if(character) {
+                cleanText += `          ${character.toUpperCase()}\n`;
+                if(parenthetical) cleanText += `        ${parenthetical}\n`;
+                if(dialog) cleanText += `     "${dialog}"\n\n`;
+            }
+            if(transition) cleanText += `                                                       ${transition}\n`;
+
+            const blob = new Blob([cleanText], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Naskah_Film_Siap_Kumpul.doc';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alertBox('File Word (.doc) berhasil diunduh bersih!');
+        }
+
+        function openModal(modalId) {
+            if(modalId === 'loginModal' || modalId === 'registerModal') {
+                document.getElementById('authTitle').innerText = modalId === 'loginModal' ? 'Masuk ke LMS SMK' : 'Pendaftaran Akun Siswa SMK';
+                document.getElementById('authModal').classList.remove('hidden');
+                document.getElementById('authModal').classList.add('flex');
+            }
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+        }
+
+        function openCourseDetail(courseName) {
+            document.getElementById('courseModalTitle').innerText = courseName;
+            document.getElementById('courseModal').classList.remove('hidden');
+            document.getElementById('courseModal').classList.add('flex');
+        }
+
+        function openVideoPlayer(title, url) {
+            document.getElementById('modalVideoTitle').innerText = title;
+            const vid = document.getElementById('modalVideoElement');
+            vid.src = url;
+            document.getElementById('videoModal').classList.remove('hidden');
+            document.getElementById('videoModal').classList.add('flex');
+            vid.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+
+        function closeVideoPlayer() {
+            const vid = document.getElementById('modalVideoElement');
+            vid.pause();
+            document.getElementById('videoModal').classList.add('hidden');
+            document.getElementById('videoModal').classList.remove('flex');
+        }
+
+        function alertBox(msg) {
+            document.getElementById('alertMessage').innerText = msg;
+            const alertEl = document.getElementById('customAlert');
+            alertEl.classList.remove('hidden');
+            setTimeout(() => {
+                alertEl.classList.add('hidden');
+            }, 4000);
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            closeModal('authModal');
+            alertBox('Login berhasil! Selamat datang di dashboard pembelajaran siswa SMK.');
+        }
+
+        function handleMediaUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const url = URL.createObjectURL(file);
+            currentUploadedImageSrc = url;
+            const container = document.getElementById('simMediaContainer');
+            const videoEl = document.getElementById('simVideoElement');
+
+            if (file.type.startsWith('video/')) {
+                container.style.backgroundImage = 'none';
+                videoEl.src = url;
+                videoEl.classList.remove('hidden');
+                videoEl.play().catch(e => console.log("Auto play prevented", e));
+                alertBox('Video berhasil dimuat ke dalam Simulator Color Grading!');
+            } else if (file.type.startsWith('image/')) {
+                videoEl.pause();
+                videoEl.classList.add('hidden');
+                container.style.backgroundImage = `url('${url}')`;
+                alertBox('Foto berhasil dimuat ke dalam Simulator Color Grading!');
+            } else {
+                alertBox('Format file tidak didukung. Harap unggah foto atau video.');
+            }
+        }
+
+        function saveGradedImage() {
+            const contrast = document.getElementById('rangeContrast').value;
+            const saturation = document.getElementById('rangeSaturation').value;
+            const temp = parseInt(document.getElementById('rangeTemp').value);
+            const lutVal = document.getElementById('selectLUT').value;
+
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.src = currentUploadedImageSrc.startsWith('blob:') ? currentUploadedImageSrc : 'https://placehold.co/1280x720/0f0505/ef4444?text=Praktikum+Color+Grading+SMK';
+
+            img.onload = function() {
+                // Gunakan ukuran asli gambar/video yang diunggah tanpa penambahan watermark atau teks web
+                const canvas = document.createElement('canvas');
+                canvas.width = img.naturalWidth || 1280;
+                canvas.height = img.naturalHeight || 720;
+                const ctx = canvas.getContext('2d');
+
+                // Apply CSS-like filters on canvas context
+                ctx.filter = `contrast(${contrast}%) saturate(${saturation}%)`;
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Reset filter for overlays
+                ctx.filter = 'none';
+
+                // Overlay LUT Tint effect
+                if (lutVal === 'tealOrange') {
+                    ctx.fillStyle = 'rgba(13, 148, 136, 0.25)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'rgba(249, 115, 22, 0.2)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                } else if (lutVal === 'cyberpunk') {
+                    ctx.fillStyle = 'rgba(236, 72, 153, 0.3)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                } else if (lutVal === 'warmCinematic') {
+                    ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+
+                if (temp !== 0) {
+                    ctx.fillStyle = temp > 0 ? `rgba(255, 100, 0, ${Math.abs(temp)/200})` : `rgba(0, 150, 255, ${Math.abs(temp)/200})`;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+
+                // Convert to data URL and trigger download as PNG image without any watermark or text
+                const dataUrl = canvas.toDataURL('image/png');
+                const a = document.createElement('a');
+                a.href = dataUrl;
+                a.download = `Hasil_Color_Grading_${lutVal}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                alertBox('Hasil Color Grading berhasil disimpan murni tanpa watermark (.png)!');
+            };
+
+            img.onerror = function() {
+                alertBox('Gagal merender gambar. Pastikan file media valid.');
+            };
+        }
+
+        function updateColorGrading() {
+            const lutVal = document.getElementById('selectLUT').value;
+            const lutText = document.getElementById('selectLUT').options[document.getElementById('selectLUT').selectedIndex].text;
+            const contrast = document.getElementById('rangeContrast').value;
+            const saturation = document.getElementById('rangeSaturation').value;
+            const temp = parseInt(document.getElementById('rangeTemp').value);
+
+            document.getElementById('valLUT').innerText = lutText;
+            document.getElementById('dispLUT').innerText = lutText;
+
+            document.getElementById('valContrast').innerText = contrast + '%';
+            document.getElementById('valSaturation').innerText = saturation + '%';
+            
+            let tempLabel = "Normal (0)";
+            if(temp > 0) tempLabel = `Hangat (+${temp})`;
+            else if(temp < 0) tempLabel = `Dingin (${temp})`;
+            document.getElementById('valTemp').innerText = tempLabel;
+
+            const container = document.getElementById('simMediaContainer');
+            const videoEl = document.getElementById('simVideoElement');
+            const gradeOverlay = document.getElementById('colorGradeOverlay');
+            const tintOverlay = document.getElementById('colorTintOverlay');
+
+            // Apply CSS Filters to both image background and video element
+            const filterStr = `contrast(${contrast}%) saturate(${saturation}%)`;
+            container.style.filter = filterStr;
+            videoEl.style.filter = filterStr;
+
+            // LUT and Temperature Styling Overlays
+            if(lutVal === 'tealOrange') {
+                gradeOverlay.style.backgroundColor = 'rgba(13, 148, 136, 0.25)';
+                tintOverlay.style.backgroundColor = 'rgba(249, 115, 22, 0.2)';
+                tintOverlay.style.opacity = '1';
+            } else if(lutVal === 'cyberpunk') {
+                gradeOverlay.style.backgroundColor = 'rgba(236, 72, 153, 0.3)';
+                tintOverlay.style.backgroundColor = 'rgba(59, 130, 246, 0.3)';
+                tintOverlay.style.opacity = '1';
+            } else if(lutVal === 'noir') {
+                container.style.filter = `grayscale(100%) contrast(${contrast}%)`;
+                videoEl.style.filter = `grayscale(100%) contrast(${contrast}%)`;
+                gradeOverlay.style.backgroundColor = 'rgba(0,0,0,0.2)';
+                tintOverlay.style.opacity = '0';
+            } else if(lutVal === 'warmCinematic') {
+                gradeOverlay.style.backgroundColor = 'rgba(245, 158, 11, 0.25)';
+                tintOverlay.style.opacity = '1';
+            } else {
+                gradeOverlay.style.backgroundColor = 'rgba(100, 100, 100, 0.15)';
+                tintOverlay.style.opacity = '0';
+            }
+
+            // Temperature Tint adjustment
+            if(temp !== 0) {
+                tintOverlay.style.backgroundColor = temp > 0 ? `rgba(255, 100, 0, ${Math.abs(temp)/100})` : `rgba(0, 150, 255, ${Math.abs(temp)/100})`;
+                tintOverlay.style.opacity = '0.7';
+            }
+
+            const adviceEl = document.getElementById('gradingAdvice');
+            if(lutVal === 'tealOrange') {
+                adviceEl.innerText = "Teal & Orange memberikan kontras sinematik Hollywood yang sangat populer untuk film pendek SMK.";
+            } else if(lutVal === 'cyberpunk') {
+                adviceEl.innerText = "Nuansa neon futuristik ideal untuk video musik atau fiksi ilmiah modern.";
+            } else if(lutVal === 'noir') {
+                adviceEl.innerText = "Gaya monokrom hitam putih menonjolkan dramatisasi dan emosi adegan klasik.";
+            } else {
+                adviceEl.innerText = "Pengaturan warna seimbang siap untuk dikumpulkan ke guru pengampu.";
+            }
+        }
+    </script>
+</body>
+</html>
