@@ -964,20 +964,6 @@ function saveGradedImage() {
                 alertBox('Gagal merender gambar. Pastikan file media valid.');
             };
         }
-                const dataUrl = canvas.toDataURL('image/png');
-                const a = document.createElement('a');
-                a.href = dataUrl;
-                a.download = `Hasil_Color_Grading_${lutVal}.png`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                alertBox('Hasil Color Grading berhasil disimpan murni tanpa watermark (.png)!');
-            };
-
-            img.onerror = function() {
-                alertBox('Gagal merender gambar. Pastikan file media valid.');
-            };
-        }
 
         function updateColorGrading() {
             const lutVal = document.getElementById('selectLUT').value;
