@@ -873,7 +873,7 @@
             }
         }
 
-        function saveGradedImage() {
+function saveGradedImage() {
             const contrast = document.getElementById('rangeContrast').value;
             const saturation = document.getElementById('rangeSaturation').value;
             const temp = parseInt(document.getElementById('rangeTemp').value);
@@ -898,43 +898,57 @@
                 ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                 ctx.filter = 'none';
 
-                // 2. Replika mix-blend-mode CSS ke Canvas API
+                // 2. Pemisahan Alpha (Mencegah Bug Premultiplied Alpha Darkening)
                 if (lutVal === 'tealOrange') {
                     ctx.globalCompositeOperation = 'overlay';
-                    ctx.fillStyle = 'rgba(13, 148, 136, 0.25)';
+                    ctx.globalAlpha = 0.25;
+                    ctx.fillStyle = 'rgb(13, 148, 136)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     
                     ctx.globalCompositeOperation = 'color';
-                    ctx.fillStyle = 'rgba(249, 115, 22, 0.2)';
+                    ctx.globalAlpha = 0.2;
+                    ctx.fillStyle = 'rgb(249, 115, 22)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 } else if (lutVal === 'cyberpunk') {
                     ctx.globalCompositeOperation = 'overlay';
-                    ctx.fillStyle = 'rgba(236, 72, 153, 0.3)';
+                    ctx.globalAlpha = 0.3;
+                    ctx.fillStyle = 'rgb(236, 72, 153)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                     
                     ctx.globalCompositeOperation = 'color';
-                    ctx.fillStyle = 'rgba(59, 130, 246, 0.3)'; 
+                    ctx.globalAlpha = 0.3;
+                    ctx.fillStyle = 'rgb(59, 130, 246)'; 
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 } else if (lutVal === 'noir') {
                     ctx.globalCompositeOperation = 'overlay';
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                    ctx.globalAlpha = 0.2;
+                    ctx.fillStyle = 'rgb(0, 0, 0)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 } else if (lutVal === 'warmCinematic') {
                     ctx.globalCompositeOperation = 'overlay';
-                    ctx.fillStyle = 'rgba(245, 158, 11, 0.25)';
+                    ctx.globalAlpha = 0.25;
+                    ctx.fillStyle = 'rgb(245, 158, 11)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                } else {
+                    // Fallback untuk filter lain (seperti Bleach Bypass)
+                    ctx.globalCompositeOperation = 'overlay';
+                    ctx.globalAlpha = 0.15;
+                    ctx.fillStyle = 'rgb(100, 100, 100)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
 
-                // 3. Kalibrasi Temperatur
+                // 3. Kalibrasi Temperatur Suhu Warna
                 if (temp !== 0) {
                     ctx.globalCompositeOperation = 'color';
-                    const tempAlpha = (Math.abs(temp) / 100) * 0.7;
-                    ctx.fillStyle = temp > 0 ? `rgba(255, 100, 0, ${tempAlpha})` : `rgba(0, 150, 255, ${tempAlpha})`;
+                    // Menyamakan presisi dari pengaturan CSS (0.7 opacity)
+                    ctx.globalAlpha = (Math.abs(temp) / 100) * 0.7;
+                    ctx.fillStyle = temp > 0 ? 'rgb(255, 100, 0)' : 'rgb(0, 150, 255)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
                 }
 
-                // 4. Reset Composite
+                // 4. Reset Composite & Mutlak Alpha agar tidak bocor
                 ctx.globalCompositeOperation = 'source-over';
+                ctx.globalAlpha = 1.0;
 
                 const dataUrl = canvas.toDataURL('image/png');
                 const a = document.createElement('a');
@@ -950,7 +964,6 @@
                 alertBox('Gagal merender gambar. Pastikan file media valid.');
             };
         }
-
                 const dataUrl = canvas.toDataURL('image/png');
                 const a = document.createElement('a');
                 a.href = dataUrl;
