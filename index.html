@@ -889,7 +889,7 @@
                 canvas.height = img.naturalHeight || 720;
                 const ctx = canvas.getContext('2d');
 
-function saveGradedImage() {
+        function saveGradedImage() {
             const contrast = document.getElementById('rangeContrast').value;
             const saturation = document.getElementById('rangeSaturation').value;
             const temp = parseInt(document.getElementById('rangeTemp').value);
@@ -966,7 +966,6 @@ function saveGradedImage() {
                 alertBox('Gagal merender gambar. Pastikan file media valid.');
             };
         }
-                }
 
                 const dataUrl = canvas.toDataURL('image/png');
                 const a = document.createElement('a');
