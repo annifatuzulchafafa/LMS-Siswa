@@ -889,22 +889,6 @@
                 canvas.height = img.naturalHeight || 720;
                 const ctx = canvas.getContext('2d');
 
-        function saveGradedImage() {
-            const contrast = document.getElementById('rangeContrast').value;
-            const saturation = document.getElementById('rangeSaturation').value;
-            const temp = parseInt(document.getElementById('rangeTemp').value);
-            const lutVal = document.getElementById('selectLUT').value;
-
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.src = currentUploadedImageSrc.startsWith('blob:') ? currentUploadedImageSrc : 'https://placehold.co/1280x720/0f0505/ef4444?text=Praktikum+Color+Grading+SMK';
-
-            img.onload = function() {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.naturalWidth || 1280;
-                canvas.height = img.naturalHeight || 720;
-                const ctx = canvas.getContext('2d');
-
                 // 1. Terapkan Filter Dasar
                 let filterStr = `contrast(${contrast}%) saturate(${saturation}%)`;
                 if (lutVal === 'noir') {
